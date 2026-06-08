@@ -20,6 +20,8 @@ export const siteMeta = {
   linkedin: "https://www.linkedin.com/in/tanvirhossainp",
   cvPath: "/cv/tanvir-hossain-parvin-resume.pdf",
   cvFilename: "Tanvir-Hossain-Parvin-Resume.pdf",
+  profileImage: "/images/profile.jpg",
+  profileImageAlt: "Portrait of Tanvir Hossain Parvin",
 } as const;
 
 export const about = {

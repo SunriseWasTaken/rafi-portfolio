@@ -3,6 +3,7 @@ import { BracketFrame } from "@/components/ui/BracketFrame";
 import { CvDownloadButton } from "@/components/ui/CvDownloadButton";
 import { MetaLabel } from "@/components/ui/MetaLabel";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { ProfileAvatar } from "@/components/ui/ProfileAvatar";
 
 export function Hero() {
   return (
@@ -39,18 +40,25 @@ export function Hero() {
           Portfolio / {siteMeta.displayName}
         </p>
 
-        <h1
-          id="hero-heading"
-          className="text-4xl font-medium tracking-tight text-foreground sm:text-5xl md:text-7xl md:leading-[1.05]"
-        >
-          <span className="block">{siteMeta.givenName}</span>
-          <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <span className="block">{siteMeta.surnames}</span>
-            <span className="font-mono text-sm font-normal tracking-normal text-muted-light md:text-base">
-              ({siteMeta.nickname})
+        <div className="flex items-start justify-between gap-6 sm:items-center sm:gap-8">
+          <h1
+            id="hero-heading"
+            className="min-w-0 flex-1 text-4xl font-medium tracking-tight text-foreground sm:text-5xl md:text-7xl md:leading-[1.05]"
+          >
+            <span className="block">{siteMeta.givenName}</span>
+            <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span className="block">{siteMeta.surnames}</span>
+              <span className="font-mono text-sm font-normal tracking-normal text-muted-light md:text-base">
+                ({siteMeta.nickname})
+              </span>
             </span>
-          </span>
-        </h1>
+          </h1>
+          <ProfileAvatar
+            size="lg"
+            className="h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28"
+            priority
+          />
+        </div>
 
         <p className="mt-8 max-w-lg text-lg leading-relaxed text-muted md:text-xl">
           {siteMeta.tagline}
