@@ -35,7 +35,7 @@ export function ProfileAvatar({
         alt={siteMeta.profileImageAlt}
         width={dimensions.pixels}
         height={dimensions.pixels}
-        className="h-full w-full object-cover object-[center_15%]"
+        className="h-full w-full object-cover object-[center_10%]"
         priority={priority}
         sizes={`${dimensions.pixels}px`}
       />

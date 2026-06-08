@@ -40,7 +40,12 @@ export function Hero() {
           Portfolio / {siteMeta.displayName}
         </p>
 
-        <div className="flex items-start justify-between gap-6 sm:items-center sm:gap-8">
+        <div className="flex items-start gap-4 sm:items-center sm:gap-6 md:gap-8">
+          <ProfileAvatar
+            size="lg"
+            className="h-[4.25rem] w-[4.25rem] shrink-0 ring-1 ring-accent-highlight/20 sm:h-24 sm:w-24 md:h-28 md:w-28"
+            priority
+          />
           <h1
             id="hero-heading"
             className="min-w-0 flex-1 text-4xl font-medium tracking-tight text-foreground sm:text-5xl md:text-7xl md:leading-[1.05]"
@@ -53,11 +58,6 @@ export function Hero() {
               </span>
             </span>
           </h1>
-          <ProfileAvatar
-            size="lg"
-            className="h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28"
-            priority
-          />
         </div>
 
         <p className="mt-8 max-w-lg text-lg leading-relaxed text-muted md:text-xl">
