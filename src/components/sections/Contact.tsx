@@ -81,9 +81,9 @@ export function Contact() {
             </div>
           </BracketFrame>
 
-          <div className="border border-accent-education/20 border-dashed bg-accent-education/5 p-5 md:p-6">
-            <p className="mb-6 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-accent-education">
-              <span className="h-px w-3 bg-accent-education/50" aria-hidden="true" />
+          <div className="border border-accent-highlight/25 border-dashed bg-accent-highlight/8 p-5 md:p-6">
+            <p className="mb-6 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-accent-highlight">
+              <span className="h-px w-3 bg-accent-highlight/50" aria-hidden="true" />
               System Info
             </p>
             <div className="grid gap-6 sm:grid-cols-2">

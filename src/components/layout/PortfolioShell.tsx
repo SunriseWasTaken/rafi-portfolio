@@ -23,7 +23,7 @@ export function PortfolioShell() {
         <SideNav />
         <div className={`flex min-w-0 flex-1 flex-col ${CONTENT_PL}`}>
           <MobileHeaderBar />
-          <main id="main-content" className="pb-12 lg:pb-0">
+          <main id="main-content" className="pb-36 lg:pb-40">
             <Hero />
             <About />
             <Projects />

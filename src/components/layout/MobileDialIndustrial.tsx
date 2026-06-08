@@ -5,9 +5,9 @@ import { useActiveSection } from "@/components/layout/useActiveSection";
 import { useMobileDialNav } from "@/components/layout/useMobileDialNav";
 import { cn } from "@/lib/utils";
 
-const ARC_RADIUS = 72;
-const ARC_CENTER_X = 100;
-const ARC_CENTER_Y = 88;
+const ARC_RADIUS = 84;
+const ARC_CENTER_X = 120;
+const ARC_CENTER_Y = 102;
 
 function polarToCartesian(
   cx: number,
@@ -55,25 +55,28 @@ export function MobileDialIndustrial() {
       {open && (
         <button
           type="button"
-          className="fixed inset-0 z-[85] bg-background/40 lg:hidden"
+          className="fixed inset-0 z-[105] bg-background/40 backdrop-blur-[1px]"
           aria-label="Close navigation dial"
           onClick={() => setOpen(false)}
         />
       )}
 
       <div
-        className="fixed bottom-0 left-1/2 z-[90] w-full max-w-xs -translate-x-1/2 pb-[max(1.25rem,env(safe-area-inset-bottom))] lg:hidden"
+        className="pointer-events-none fixed bottom-0 left-1/2 z-[110] w-full max-w-sm -translate-x-1/2 pb-[max(1.25rem,env(safe-area-inset-bottom))] lg:left-[calc(50%+5.5rem)]"
         aria-label="Navigation dial"
       >
         <div
           className={cn(
-            "mx-auto mb-3 w-fit transition-all duration-300",
+            "pointer-events-auto mx-auto mb-3 w-fit transition-all duration-300",
             open
-              ? "pointer-events-auto translate-y-0 opacity-100"
+              ? "translate-y-0 opacity-100"
               : "pointer-events-none translate-y-3 opacity-0"
           )}
         >
-          <ul className="space-y-0.5 border border-border bg-surface/95 px-2 py-2 backdrop-blur-sm" role="list">
+          <ul
+            className="space-y-0.5 border border-border bg-surface/95 px-2 py-2 shadow-lg backdrop-blur-sm"
+            role="list"
+          >
             {navLinks.map((link, index) => {
               const isActive = activeSection === link.sectionId;
               return (
@@ -107,81 +110,91 @@ export function MobileDialIndustrial() {
           </ul>
         </div>
 
-        <div className="relative mx-auto" style={{ width: 200, height: 96 }}>
-          <svg
-            viewBox="0 0 200 96"
-            className="h-full w-full overflow-visible"
-            aria-hidden="true"
-          >
-            <path
-              d={describeArc(ARC_CENTER_X, ARC_CENTER_Y, ARC_RADIUS, 0, 180)}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1"
-              className="text-border"
-            />
-            <path
-              d={describeArc(ARC_CENTER_X, ARC_CENTER_Y, ARC_RADIUS, arcStart, arcEnd)}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-              className="text-foreground transition-all duration-500"
-            />
-            {navLinks.map((_, index) => {
-              const tickAngle = index * segmentSpan;
-              const inner = polarToCartesian(
-                ARC_CENTER_X,
-                ARC_CENTER_Y,
-                ARC_RADIUS - 6,
-                tickAngle
-              );
-              const outer = polarToCartesian(
-                ARC_CENTER_X,
-                ARC_CENTER_Y,
-                ARC_RADIUS + 2,
-                tickAngle
-              );
-              return (
-                <line
-                  key={index}
-                  x1={inner.x}
-                  y1={inner.y}
-                  x2={outer.x}
-                  y2={outer.y}
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  className={cn(
-                    index === activeIndex ? "text-foreground" : "text-border"
-                  )}
-                />
-              );
-            })}
-          </svg>
+        <div className="pointer-events-auto relative mx-auto rounded-t-xl border border-b-0 border-border bg-surface/90 px-6 pt-3 backdrop-blur-md">
+          <div className="relative mx-auto" style={{ width: 240, height: 112 }}>
+            <svg
+              viewBox="0 0 240 112"
+              className="h-full w-full overflow-visible"
+              aria-hidden="true"
+            >
+              <path
+                d={describeArc(ARC_CENTER_X, ARC_CENTER_Y, ARC_RADIUS, 0, 180)}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="text-muted-light/40"
+              />
+              <path
+                d={describeArc(
+                  ARC_CENTER_X,
+                  ARC_CENTER_Y,
+                  ARC_RADIUS,
+                  arcStart,
+                  arcEnd
+                )}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="5"
+                strokeLinecap="round"
+                className="text-foreground transition-all duration-500"
+              />
+              {navLinks.map((_, index) => {
+                const tickAngle = index * segmentSpan;
+                const inner = polarToCartesian(
+                  ARC_CENTER_X,
+                  ARC_CENTER_Y,
+                  ARC_RADIUS - 8,
+                  tickAngle
+                );
+                const outer = polarToCartesian(
+                  ARC_CENTER_X,
+                  ARC_CENTER_Y,
+                  ARC_RADIUS + 4,
+                  tickAngle
+                );
+                return (
+                  <line
+                    key={index}
+                    x1={inner.x}
+                    y1={inner.y}
+                    x2={outer.x}
+                    y2={outer.y}
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    className={cn(
+                      index === activeIndex ? "text-foreground" : "text-muted-light/50"
+                    )}
+                  />
+                );
+              })}
+            </svg>
 
-          <button
-            type="button"
-            className={cn(
-              "dial-knob absolute left-1/2 top-[calc(100%-12px)] flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-surface transition-transform duration-300",
-              open && "scale-105 border-foreground"
-            )}
-            onClick={toggle}
-            aria-expanded={open}
-            aria-label={open ? "Close navigation dial" : "Open navigation dial"}
-          >
-            <span className="font-mono text-[9px] uppercase tracking-wider text-muted-light">
-              Nav
-            </span>
-          </button>
-        </div>
+            <button
+              type="button"
+              className={cn(
+                "dial-knob absolute left-1/2 top-[calc(100%-14px)] flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-surface transition-transform duration-300",
+                open && "scale-105 border-foreground"
+              )}
+              onClick={toggle}
+              aria-expanded={open}
+              aria-label={
+                open ? "Close navigation dial" : "Open navigation dial"
+              }
+            >
+              <span className="font-mono text-[9px] uppercase tracking-wider text-muted-light">
+                Nav
+              </span>
+            </button>
+          </div>
 
-        <div className="mt-1 text-center">
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-light">
-            Navigation
-          </p>
-          <p className="font-mono text-sm tabular-nums text-foreground">
-            {displayDegrees}°
-          </p>
+          <div className="pb-3 pt-1 text-center">
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-light">
+              Navigation
+            </p>
+            <p className="font-mono text-sm tabular-nums text-foreground">
+              {displayDegrees}°
+            </p>
+          </div>
         </div>
       </div>
     </>
