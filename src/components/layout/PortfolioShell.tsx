@@ -2,7 +2,8 @@
 
 import { Footer } from "@/components/layout/Footer";
 import { GridBackground } from "@/components/layout/GridBackground";
-import { MobileHeader } from "@/components/layout/MobileHeader";
+import { MobileDialIndustrial } from "@/components/layout/MobileDialIndustrial";
+import { MobileHeaderBar } from "@/components/layout/MobileHeaderBar";
 import { SideNav } from "@/components/layout/SideNav";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { TelemetryOverlay } from "@/components/layout/TelemetryOverlay";
@@ -21,7 +22,7 @@ export function PortfolioShell() {
       <div className="relative z-10 flex min-h-full">
         <SideNav />
         <div className={`flex min-w-0 flex-1 flex-col ${CONTENT_PL}`}>
-          <MobileHeader />
+          <MobileHeaderBar />
           <main id="main-content" className="pb-12 lg:pb-0">
             <Hero />
             <About />
@@ -33,6 +34,7 @@ export function PortfolioShell() {
           <Footer />
         </div>
       </div>
+      <MobileDialIndustrial />
       <TelemetryOverlay />
     </SmoothScroll>
   );
