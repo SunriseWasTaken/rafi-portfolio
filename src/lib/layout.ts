@@ -1,4 +1,4 @@
-export const CONTENT_PL = "lg:pl-[calc(11rem+1.75rem)]";
+export const CONTENT_PL = "lg:pl-44";
 
 export function getScrollOffset() {
   if (typeof window === "undefined") return -16;

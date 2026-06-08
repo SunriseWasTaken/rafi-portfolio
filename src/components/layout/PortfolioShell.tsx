@@ -18,7 +18,6 @@ export function PortfolioShell() {
   return (
     <SmoothScroll>
       <GridBackground />
-      <TelemetryOverlay />
       <div className="relative z-10 flex min-h-full">
         <SideNav />
         <div className={`flex min-w-0 flex-1 flex-col ${CONTENT_PL}`}>
@@ -34,6 +33,7 @@ export function PortfolioShell() {
           <Footer />
         </div>
       </div>
+      <TelemetryOverlay />
     </SmoothScroll>
   );
 }

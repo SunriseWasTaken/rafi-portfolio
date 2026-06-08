@@ -2,12 +2,26 @@ import { experience } from "@/data/content";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Tag } from "@/components/ui/Tag";
 
-function experienceTypeClass(type: string) {
-  if (type === "Engineering") {
-    return "border-status-active/60 bg-status-active/15 text-status-active";
-  }
+const experienceTypeStyles = {
+  Education: {
+    tag: "border-accent-education/70 bg-accent-education/10 text-accent-education",
+    dot: "bg-accent-education",
+  },
+  Engineering: {
+    tag: "border-status-active/60 bg-status-active/15 text-status-active",
+    dot: "bg-status-active",
+  },
+  Operations: {
+    tag: "border-accent-operations/70 bg-accent-operations/10 text-accent-operations",
+    dot: "bg-accent-operations",
+  },
+} as const;
 
-  return "border-accent-tag/70 bg-accent-tag/10 text-accent-tag";
+function getExperienceTypeStyle(type: string) {
+  return (
+    experienceTypeStyles[type as keyof typeof experienceTypeStyles] ??
+    experienceTypeStyles.Operations
+  );
 }
 
 export function Experience() {
@@ -32,7 +46,10 @@ export function Experience() {
           />
 
           <ol className="space-y-0">
-            {experience.map((item, index) => (
+            {experience.map((item, index) => {
+              const typeStyle = getExperienceTypeStyle(item.type);
+
+              return (
               <li
                 key={item.id}
                 className="relative grid gap-4 pb-10 pl-8 md:grid-cols-[148px_1fr] md:gap-8 md:pl-12 md:pb-12"
@@ -42,11 +59,7 @@ export function Experience() {
                   aria-hidden="true"
                 >
                   <span
-                    className={`h-1.5 w-1.5 md:h-2 md:w-2 ${
-                      item.type === "Engineering"
-                        ? "bg-status-active"
-                        : "bg-accent-tag"
-                    }`}
+                    className={`h-1.5 w-1.5 md:h-2 md:w-2 ${typeStyle.dot}`}
                   />
                 </span>
 
@@ -54,9 +67,7 @@ export function Experience() {
                   <time className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-light">
                     {item.period}
                   </time>
-                  <Tag className={experienceTypeClass(item.type)}>
-                    {item.type}
-                  </Tag>
+                  <Tag className={typeStyle.tag}>{item.type}</Tag>
                 </div>
 
                 <div>
@@ -93,7 +104,8 @@ export function Experience() {
                   />
                 )}
               </li>
-            ))}
+            );
+            })}
           </ol>
         </div>
       </div>

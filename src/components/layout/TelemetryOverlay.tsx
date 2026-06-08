@@ -43,7 +43,7 @@ export function TelemetryOverlay() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-[5] hidden lg:block"
+      className="pointer-events-none fixed inset-0 z-[100] hidden lg:block"
       aria-hidden="true"
     >
       <div className="telemetry-crosshair" />
